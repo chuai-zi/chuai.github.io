@@ -6,12 +6,12 @@
  */
 
 export const CONFIG = {
-    // 你的后端 API 地址 (示例: Python FastAPI / Node.js Express)
-    API_ENDPOINT: "https://api.your-domain.com/v1/try-on",
+    // 修改 1: 指向我们刚才写的 Vercel 后端 (相对路径)
+    API_ENDPOINT: "/api/index", 
     
-    // 是否开启 Mock 模式 (True: 不调用 API，直接返回假数据，用于演示; False: 真实调用)
-    USE_MOCK: true, 
+    // 修改 2: 关闭 Mock 模式，开启实战！
+    USE_MOCK: false, 
 
-    // 轮询间隔 (毫秒)
+    // 轮询间隔
     POLL_INTERVAL: 2000,
 };
