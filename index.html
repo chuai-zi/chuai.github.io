@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIRTUAL FIT | 高端虚拟试衣</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#000000',
+                        secondary: '#666666',
+                        bglight: '#ffffff',
+                    },
+                    boxShadow: {
+                        'card': '0 20px 40px rgba(0,0,0,0.08)',
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+<body class="text-primary min-h-screen flex flex-col items-center justify-center p-4 sm:p-8 antialiased">
+
+    <main class="w-full max-w-6xl bg-bglight rounded-[32px] shadow-card overflow-hidden min-h-[800px] flex flex-col relative border border-white/50">
+        
+        <header class="w-full px-10 py-8 border-b border-gray-100 flex justify-between items-center bg-white/90 backdrop-blur-md sticky top-0 z-20">
+            <div class="text-2xl font-bold tracking-tight flex items-center gap-2">
+                <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.9999 7.89C20.902 7.11937 20.5795 6.39643 20.0699 5.8067C19.5604 5.21698 18.8856 4.78567 18.1249 4.564C17.3642 4.34234 16.5494 4.3397 15.7779 4.55636C15.0065 4.77303 14.3101 5.2001 13.7719 5.787L11.9999 7.72L10.2279 5.787C9.68977 5.2001 8.99336 4.77303 8.22192 4.55636C7.45048 4.3397 6.6357 4.34234 5.87499 4.564C5.11427 4.78567 4.43953 5.21698 3.93 5.8067C3.42047 6.39643 3.09792 7.11937 2.99994 7.89C2.86594 8.947 3.16194 10.019 3.81594 10.88L11.9999 20L20.1839 10.88C20.8379 10.019 21.1339 8.947 20.9999 7.89Z"/></svg>
+                VIRTUAL FIT
+            </div>
+            
+            <div class="flex items-center space-x-6 text-sm font-semibold">
+                <div id="step-indicator-1" class="step-item flex flex-col items-center text-primary relative">
+                    <span class="mb-2">01 模特</span>
+                    <div class="h-1 w-12 bg-primary rounded-full indicator-line transition-all duration-500"></div>
+                </div>
+                 <div id="step-indicator-2" class="step-item flex flex-col items-center text-gray-300 relative">
+                    <span class="mb-2">02 服饰</span>
+                    <div class="h-1 w-12 bg-gray-200 rounded-full indicator-line transition-all duration-500"></div>
+                </div>
+                <div id="step-indicator-3" class="step-item flex flex-col items-center text-gray-300 relative">
+                    <span class="mb-2">03 生成</span>
+                    <div class="h-1 w-12 bg-gray-200 rounded-full indicator-line transition-all duration-500"></div>
+                </div>
+            </div>
+            
+            <div class="w-24"></div>
+        </header>
+
+        <div class="flex-1 p-10 sm:p-16 relative overflow-y-auto">
+            
+            <section id="step-1" class="fade-in h-full flex flex-col">
+                <div class="mb-12">
+                    <h1 class="text-4xl font-bold mb-4">Step 1. 选择你的模特</h1>
+                    <p class="text-lg text-secondary max-w-xl">上传你自己的全身照片，或者从预设模特中选择。</p>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 flex-1">
+                    <div class="lg:col-span-4">
+                         <div class="h-full border-2 border-dashed border-gray-200 rounded-3xl bg-gray-50 flex flex-col items-center justify-center p-8 cursor-pointer hover:bg-gray-100 hover:border-gray-300 transition-all group" id="upload-btn-model">
+                            <div class="w-20 h-20 bg-white rounded-2xl shadow-sm flex items-center justify-center mb-6 group-hover:scale-105 transition-transform" id="upload-icon-model">
+                                <svg class="w-8 h-8 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4v16m8-8H4"></path></svg>
+                            </div>
+                            <p class="text-lg font-semibold text-primary">上传照片</p>
+                            <p class="text-sm text-secondary mt-2 text-center">支持 JPG/PNG</p>
+                            <input type="file" id="user-upload" class="hidden">
+                        </div>
+                    </div>
+                    <div class="lg:col-span-8">
+                        <div class="grid grid-cols-2 sm:grid-cols-3 gap-6">
+                            <div data-type="model" data-src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=600&auto=format&fit=crop" class="preset-card group cursor-pointer">
+                                <div class="img-container-ratio"><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=600&auto=format&fit=crop"></div>
+                                <p class="mt-3 font-medium ml-1">Anna, Studio</p>
+                            </div>
+                            <div data-type="model" data-src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=600&auto=format&fit=crop" class="preset-card group cursor-pointer">
+                                <div class="img-container-ratio"><img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=600&auto=format&fit=crop"></div>
+                                <p class="mt-3 font-medium ml-1">David, Urban</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="step-2" class="hidden fade-in h-full flex flex-col">
+                <div class="mb-12">
+                    <h1 class="text-4xl font-bold mb-4">Step 2. 挑选试穿服饰</h1>
+                    <p class="text-lg text-secondary max-w-xl">上传平铺的衣服图片，或者选择热门款式。</p>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 flex-1">
+                     <div class="lg:col-span-4">
+                        <div class="h-full border-2 border-dashed border-gray-200 rounded-3xl bg-gray-50 flex flex-col items-center justify-center p-8 cursor-pointer hover:bg-gray-100 hover:border-gray-300 transition-all group" id="upload-btn-cloth">
+                           <div class="w-20 h-20 bg-white rounded-2xl shadow-sm flex items-center justify-center mb-6 group-hover:scale-105 transition-transform" id="upload-icon-cloth">
+                            <svg class="w-8 h-8 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 7h10v10H7zM4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                           </div>
+                           <p class="text-lg font-semibold text-primary">上传衣服</p>
+                           <p class="text-sm text-secondary mt-2 text-center">平铺/挂拍效果最佳</p>
+                           <input type="file" id="cloth-upload" class="hidden">
+                       </div>
+                   </div>
+                   <div class="lg:col-span-8">
+                        <div class="grid grid-cols-2 sm:grid-cols-3 gap-6">
+                            <div data-type="cloth" data-src="https://images.unsplash.com/photo-1434389677669-e08b4cac3105?q=80&w=600&auto=format&fit=crop" class="preset-card group cursor-pointer">
+                                <div class="img-container-ratio bg-gray-100"><img src="https://images.unsplash.com/photo-1434389677669-e08b4cac3105?q=80&w=600&auto=format&fit=crop" class="p-4 object-contain"></div>
+                                <p class="mt-3 font-medium ml-1">White Tee</p>
+                            </div>
+                            <div data-type="cloth" data-src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?q=80&w=600&auto=format&fit=crop" class="preset-card group cursor-pointer">
+                                <div class="img-container-ratio bg-gray-100"><img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?q=80&w=600&auto=format&fit=crop" class="p-4 object-contain"></div>
+                                <p class="mt-3 font-medium ml-1">Denim Jacket</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="step-3" class="hidden h-full flex-col items-center justify-center py-10">
+                <div id="loading-view" class="flex flex-col items-center text-center fade-in">
+                    <div class="pulse-loader mb-8"></div>
+                    <h3 class="text-3xl font-bold mb-4">AI 正在为你试穿</h3>
+                    <p class="text-secondary text-lg max-w-md">正在进行高精度融合...</p>
+                    <div class="flex gap-4 mt-8 opacity-50 grayscale">
+                        <img id="loading-model-preview" src="" class="w-16 h-20 object-cover rounded-lg border border-gray-200">
+                        <img id="loading-cloth-preview" src="" class="w-16 h-20 object-cover rounded-lg border border-gray-200">
+                    </div>
+                </div>
+                <div id="result-view" class="hidden w-full h-full flex flex-col items-center fade-in">
+                    <h2 class="text-3xl font-bold mb-8">试穿完成</h2>
+                    <div class="flex gap-4 w-full max-w-[460px] aspect-[3/4] relative rounded-3xl overflow-hidden shadow-2xl bg-gray-100 ring-4 ring-gray-50 mb-10">
+                        <img id="final-result-img" src="" class="w-full h-full object-cover" alt="Result">
+                        <div class="absolute top-6 right-6 bg-black/30 backdrop-blur-md text-white px-4 py-2 rounded-full text-sm font-bold">AI Generated</div>
+                    </div>
+                    <div class="flex space-x-4">
+                         <button id="btn-download" class="bg-primary text-white px-10 py-4 rounded-full hover:bg-gray-800 font-bold">保存照片</button>
+                        <button id="btn-restart" class="bg-white border-2 border-gray-200 text-primary px-10 py-4 rounded-full hover:bg-gray-50 font-bold">重新开始</button>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <footer class="px-10 py-6 border-t border-gray-100 flex justify-between items-center bg-white/80 backdrop-blur-md">
+            <div class="text-secondary text-sm font-medium" id="step-status-text">请先完成选择...</div>
+            <button id="next-btn" class="bg-primary text-white px-12 py-4 rounded-full shadow-xl hover:bg-gray-800 transition-all disabled:opacity-40 disabled:cursor-not-allowed font-bold flex items-center gap-2" disabled>
+                下一步
+            </button>
+        </footer>
+    </main>
+
+    <script type="module" src="./assets/js/main.js"></script>
+</body>
+</html>
